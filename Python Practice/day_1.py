@@ -73,4 +73,15 @@ print("Result is:", first_last_same(number_x))
 number_y = [75, 65, 35, 75, 30]
 print("Result is:", first_last_same(number_y))
 
-#ex6. Display numbers dicisible by 5 from a list
+#ex6. Display numbers divisible by 5 from a list
+Given_List = [10, 20, 33, 45, 64, 71, 85]
+def divisible_by_5(list):
+    divided_list = []
+    for numbers in list:
+        if numbers % 5 == 0:
+            divided_list.append(numbers)
+    return divided_list
+    
+new_list = divisible_by_5(Given_List)
+print(new_list)
+
