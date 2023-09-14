@@ -13,4 +13,13 @@ def meow(n):
     for _ in range(n):
         print("Meow")
 
-main_body()
+main_body() #calling the function
+
+
+def print_hello_world():
+    print("Hello World")
+    
+print_hello_world() #calling the function
+
+
+
