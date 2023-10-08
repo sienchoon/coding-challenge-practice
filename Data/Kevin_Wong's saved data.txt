@@ -1,0 +1,5 @@
+Hello Kevin Wong
+These are your credentials: 
+The username is: kwong
+The pasword is: Qwewe123qwe
+The URL associated: google.com
