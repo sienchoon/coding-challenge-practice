@@ -1,0 +1,5 @@
+Hello Kevin Wong
+These are your credentials: 
+The username is: kwong
+The URL associated: ['yahoo.com', 'reddit.com']
+The pasword is: qwe123QWE
