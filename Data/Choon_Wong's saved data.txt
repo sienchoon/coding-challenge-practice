@@ -1,5 +1,0 @@
-Hello Choon Wong
-These are your credentials: 
-The username is: cwong
-The URL associated: www.facebook.com
-The pasword is: qwe123QWE
