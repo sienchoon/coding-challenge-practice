@@ -1,0 +1,5 @@
+Hello Choon Wong
+These are your credentials: 
+The username is: cwong
+The URL associated: The saved url is: yahoo
+The pasword is: []

@@ -97,7 +97,7 @@ while choice != 'q':
 
  #exporting the saved data to a text file in a different location       
 file_output_name = f"{f_name}_{l_name}'s saved data.txt"
-output_folder = "Data"
+output_folder = "../Data"
 file_path = os.path.join(output_folder, file_output_name)
 
 with open(file_path, "a", encoding="utf-8") as text:
