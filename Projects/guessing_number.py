@@ -21,4 +21,4 @@ while n!= guess:
         break
 
 print("You got it!")
-print(f"The number was {n} and it took you {str(attempt)} attempts")
+print(f"The number was {n} and it took you {str(attempt)} attempts!")
