@@ -1,7 +1,8 @@
 #learning functions through CS50X 
-def main_body():
-    number = get_number()
-    meow(number)
+# calling functions 
+def meow_program():
+    number = get_number() #variable is assigned to the function
+    meow(number) #function is called with assigned argument
     
 def get_number():
     while True:
@@ -11,16 +12,26 @@ def get_number():
     return n
 
 def meow(n):
-    for _ in range(n):
+    for _ in range(n):   # _ is a place holder variable 
         print("Meow")
 
-main_body() #calling the function
+meow_program() #calling the function
 
 
-def print_hello_world():
-    print("Hello World")
-    
-print_hello_world() #calling the function
+# getting to know you function
+def who_am_i():
+    name = full_name()
+    print(name)
 
 
+def full_name():
+    while True:
+        first_name = input("Enter your first name: ")
+        last_name = input("Enter your last name: ")
+        if first_name.isalpha() and last_name.isalpha():
+            break
+    first_name = first_name.title()
+    last_name = last_name.title()
+    return f"My name is {first_name} {last_name}" #returning first_name, last_name
 
+who_am_i()
