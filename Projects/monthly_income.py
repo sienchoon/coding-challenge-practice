@@ -23,7 +23,7 @@ month()
 def job_income():
     jobs = []
     income = []
-    counter = 0
+    
     
     while True:
         job_input = input("Enter the job name (or enter 'q' to finish): ")
@@ -31,16 +31,25 @@ def job_income():
         if job_input.lower() == 'q':
             break
         else:
-            jobs.append(job_input)
-            counter +=1 
+            try:
+                income_input = float(input(f"Enter the income for {job_input}: $"))
+            except ValueError:
+                print("Invalid input. Please enter a valid numeric income.")
             
-    print("Here are list of jobs you have entered: \n")
-    counter = 1
-    for job in jobs:
-        print(f"{counter}. {job}")
-        counter += 1
+            jobs.append(job_input)
+            income.append(income_input)
+            # counter +=1 
+     
+    return jobs, income
 
-job_income()
+def display_jobs(jobs, incomes):
+    print("Here are income for thejobs you have entered: \n")
+    for i in range(len(jobs)):
+        print(f"{i + 1}. {jobs[i]} : ${incomes[i]:,.2f}")
+
+
+job_list, income_list = job_income()
+display_jobs(job_list, income_list)
 
     
 
