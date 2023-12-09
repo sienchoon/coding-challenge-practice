@@ -1,3 +1,0 @@
-
-        text.write(f"The URL associated: {new_url_website}\n")
-        text.write(f"The password is: {password}\n")
