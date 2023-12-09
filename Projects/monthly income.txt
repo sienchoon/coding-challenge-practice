@@ -1,0 +1,6 @@
+Here are the income for the month of December you have entered: 
+1. Hunky Dory : $89.10
+The total income for the month is: $89.10
+Here are the income for the month of December you have entered: 
+1. Yarra Valley Water  : $1,798.65
+The total income for the month is: $1,798.65
