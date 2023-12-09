@@ -11,18 +11,14 @@
 #     job = input("Which job did you get income from: ").title()
 #     paydate = input("Enter the date of payment(DD/MM/YYYY): ")
 #     print(f'Your income from {job} is ${income} and was paid on {paydate}')
-def month():
+def month(month):
     month = input("Enter the month: ")
     month = month.title()
-    return f"The current month is: {month}"
-
-month() 
-
+    print(f"The current month is: {month}")
+month(month) 
 def job_income():
     jobs = []
-    income = []
-    
-    
+    income = []   
     while True:
         job_input = input("Enter the job name (or enter 'q' to finish): ")
         job_input = job_input.title()
@@ -41,13 +37,14 @@ def job_income():
     return jobs, income
 
 def display_jobs(jobs, incomes):
-    print("Here are income for thejobs you have entered: \n")
+    print("Here are the income for the jobs you have entered: \n")
     for i in range(len(jobs)):
-        print(f"{i + 1}. {jobs[i]} : ${incomes[i]:,.2f}")
+        print(f"{i + 1}. {jobs[i]} : ${incomes[i]:,.2f}\n")
 
 
 job_list, income_list = job_income()
 display_jobs(job_list, income_list)
+
 
     
 
