@@ -6,8 +6,6 @@
 #date of payment
 #export as csv/.txt file
 
-
-
 # def income():
 #     income = input("Enter the amount of income: $")
 #     job = input("Which job did you get income from: ").title()
