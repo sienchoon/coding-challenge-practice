@@ -34,6 +34,7 @@ function upperCase(element){
     return element.toUpperCase();
 }
 
+// 
 const squared = numbers.map(square); // new aray
 const cubes = numbers.map(cube); // new aray
 const upper = student.map(upperCase); // new aray
