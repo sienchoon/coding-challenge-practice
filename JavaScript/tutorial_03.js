@@ -15,7 +15,7 @@ console.dir(document);
 // 4. document.querySelector()                  // FIRST ELEMENT OR NULL
 // 5. document.querySelectorAll()               // NODELIST
 
-const myHeading = document.getElementById("my-heading");
+const myHeading = document.getElementById("welcome-msg");
 
 myHeading.style.backgroundColor = "yellow";
 myHeading.style.textAlign = "center";
@@ -23,13 +23,14 @@ myHeading.style.textAlign = "center";
 console.log(myHeading);
 
 
-const fruits = document.getElementsByClassName("fruits");
+const leagues = document.getElementsByClassName("league");
 
 // fruits[0].style.backgroundColor = "yellow";
 
-for(let fruit of fruits) {
+for(let leagues of league) {
     fruit.style.backgroundColor = "yellow";
     fruit.style.textAlign = "center";
 }
 
-console.log(fruits);
+console.log(leagues);
+
