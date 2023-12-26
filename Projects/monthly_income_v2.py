@@ -1,5 +1,6 @@
 # Import libraries
 import time 
+import pandas as pd
 
 # Create empty list
 INCOME = []
@@ -42,10 +43,11 @@ def main():
         elif option == 3:
             income_df = pd.DataFrame(list(zip(INCOME, DATES, JOB)), columns = ["Income", "Date", "Job"])
             income_df.to_csv("income.csv", index = False)
-            print("Income report saved to income.xlsx")
+            print("Income report saved to income.csv")
             print(income_df)
             
         else:
             print("Invalid option, please select the options 0, 1, 2, or 3.")
-            
-main()
+
+if __name__ == "__main__":            
+    main()
