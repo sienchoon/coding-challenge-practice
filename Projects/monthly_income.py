@@ -1,5 +1,7 @@
 #Project Title:  Monthly income calculator
 
+#CREATED AND COMPLETED ON 21-10-2023
+
 #how many income from jobs, frequency (weekly/fortnightly/monthly)
 #gross income vs income after tax
 #tax rate
@@ -37,7 +39,6 @@ def job_income():
                     break
                 except ValueError:
                     print("Invalid input. Please enter a valid numeric income.")
-           
             jobs.append(job_input)
             income.append(income_input)
             # counter +=1     
@@ -50,7 +51,7 @@ def display_jobs(jobs, incomes, month):
     print(f"The total income for the month is: ${sum(incomes):,.2f}\n")
 
 def write_output_file(selected_month, jobs, income, file_name='monthly income.txt'):
-    with open(file_name, 'a') as file:
+    with open(file_name, 'w') as file:
         file.write(f"Here are the income for the month of {selected_month} you have entered: \n")
         for i in range(len(jobs)):
             file.write(f"{i + 1}. {jobs[i]} : ${income[i]:,.2f}\n")
