@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const incomeList = document.getElementById('income-list');
     const addButton = document.getElementById('add-income');
     const exportButton = document.getElementById('export-data');
-
+    const pieChartCanvas = document.getElementById('pie-chart');
+    
     addButton.addEventListener('click', function () {
         const incomeValue = parseFloat(incomeInput.value.trim());
         const dateValue = dateInput.value.trim();
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         incomeInput.value = '';
         dateInput.value = '';
         jobSelect.value = '';
+        updatePieChart();
     });
 
 exportButton.addEventListener('click', function () {
@@ -56,3 +58,40 @@ exportButton.addEventListener('click', function () {
 
     });
 });
+
+
+function updatePieChart() {
+    const jobLabels = Object.keys(incomesByJob);
+    const incomeValues = Object.values(incomesByJob);
+
+    // Check if the pie chart has been initialized
+    if (!window.myPieChart) {
+        // Initialize the pie chart
+        window.myPieChart = new Chart(pieChartCanvas, {
+            type: 'pie',
+            data: {
+                labels: jobLabels,
+                datasets: [{
+                    data: incomeValues,
+                    backgroundColor: getRandomColors(jobLabels.length),
+                }],
+            },
+        });
+    } else {
+        // Update the data of the existing pie chart
+        window.myPieChart.data.labels = jobLabels;
+        window.myPieChart.data.datasets[0].data = incomeValues;
+        window.myPieChart.data.datasets[0].backgroundColor = getRandomColors(jobLabels.length);
+        window.myPieChart.update();
+    }
+}
+
+function getRandomColors(count) {
+    const colors = [];
+    for (let i = 0; i < count; i++) {
+        const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+        colors.push(randomColor);
+    }
+    return colors;
+};
+
