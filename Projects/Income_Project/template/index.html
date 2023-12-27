@@ -12,15 +12,38 @@
         <h1>Monthly Income Tracker</h1>
         <div class="wrapper">
             <div class="input-box">
-                <label for="income">Monthly Income</label>
+                <label for="income">Income</label>
                 <input type="number" id="income">
             </div>
             <div class="input-box">
                 <label for="date">Date</label>
                 <input type="date" id="date">
             </div>
-            <div class="input-box">
+           <!-- <div class="input-box"> 
                 <label for="job">Job</label>
                 <input type="text" id="job">
+            </div> --> 
+            <div class="input-box">
+                <label for="job">Job</label>
+                <!-- Use a select element for the dropdown -->
+                <select id="job">
+                    <option value="Calco Transport">Calco Transport</option>
+                    <option value="Ferguson Plarre">Ferguson Plarre</option>
+                    <option value="Hunky Dory">Hunky Dory</option>
+                    <option value="Vogue Ballroom">Vogue Ballroom</option>
+                    <option value="Yarra Valley Water">Yarra Valley Water</option>
+                    <!-- Add more options as needed -->
+                </select>
             </div>
+
             <button id="add-income">Add Income</button>
+            <button id="export-data">Export Data</button
+        </div>
+        <!-- Add an id to the ul element -->
+        <ol id="income-list"></ol>
+
+            <script src="app_display.js"></script>
+        
+    </div>
+</body>
+</html>
