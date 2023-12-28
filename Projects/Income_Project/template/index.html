@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,23 +27,41 @@
             <div class="input-box">
                 <label for="job">Job</label>
                 <!-- Use a select element for the dropdown -->
-                <select id="job">
+                <select id="jobSelect" name="job">
                     <option value="Calco Transport">Calco Transport</option>
                     <option value="Ferguson Plarre">Ferguson Plarre</option>
                     <option value="Hunky Dory">Hunky Dory</option>
                     <option value="Vogue Ballroom">Vogue Ballroom</option>
                     <option value="Yarra Valley Water">Yarra Valley Water</option>
+                    <option value="Other">Other</option>
+
                     <!-- Add more options as needed -->
                 </select>
             </div>
+                <div class="input-box">
+                    <label for="other">Other</label>
+                    <input type="text" id="otherJob">
+                </div>
 
             <button id="add-income">Add Income</button>
             <button id="export-data">Export Data</button>
+            
         </div>
         <!-- Add an id to the ul element -->
-        <ol id="income-list"></ol>
+        <!-- <ol id="income-list"></ol> -->
+        <table id="income-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Income</th>
+                    <th>Job</th>
+                </tr>
+            </thead>
+            <tbody id="income-table-body"></tbody>
+        </table>
+        
 
-            <script src="app_display.js"></script>
+        <script src="app_display.js"></script>
 
         
     </div>
