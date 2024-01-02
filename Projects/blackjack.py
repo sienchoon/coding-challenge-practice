@@ -1,8 +1,14 @@
 # Black Jack Game
 import random as random
-
+import time
+def greetings():
+    print("Welcome to BlackJack")
+    
+def play_game():
+    return input("Would you like to play? [y/n]: ").lower()
+    
 def deck_list():
-    cards = ['A',2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
+    cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
     return random.choice(cards)
 
 # Value of individual cards in a deck
@@ -19,24 +25,36 @@ value = card_value(cards)
 # Check if values are matching 
 # print(f'{cards} : {value}') 
 
-#---------------------------------------------------------------#
-def blackjack():
-    print("Thats a blackjack!")
+def deal_another_card():
+    return input("Would you like another card? (y/n): ").lower()
 
-def busted():
-    print("Thats a bust!")
+#---------------------------------------------------------------#
+def player_blackjack():
+    return "Thats a Blackjack! Player wins!"
+
+def player_busted():
+    return "You bust The house wins!"
+
+def dealer_blackjack():
+    return "Thats a Blackjack! Dealer wins!"
+
+def dealer_busted():
+    return "Dealer bust! Player wins!"
         
  # Function to calculate score       
-def calculate_score(player_hand):
-    player_score = sum(card_value(card) for card in player_hand)
-    if 'A' in player_hand and player_score >21:
-        player_score -= 10
+def calculate_score(hand):
+    hand_score = sum(card_value(card) for card in hand)
+    if 'A' in hand and hand_score > 21:
+        hand_score -= 10
+    else:
+        print(f"Score: {hand_score}")
+    return hand_score
         
-    if player_score == 21:
-        blackjack()
-    elif player_score > 21:
-        busted()
-    return player_score
+    # if player_score == 21:
+    #     player_blackjack()
+    # elif player_score > 21:
+    #     player_busted()
+    # return player_score
 #---------------------------------------------------------------#
 
 # function to deal cards to player and dealer
@@ -58,75 +76,78 @@ def add_card_dealer_hand(dealer_hand):
     return dealer_hand
 
 def dealer_turn(dealer_hand, player_hand):
+    print("It is dealer's turn to draw a card")
     player_score = calculate_score(player_hand)
     
     # if player hand bust
     if player_score > 21:
-        print("Player bust! Dealer doesn't have to take more cards")
+        player_busted()
         
-    while calculate_score(dealer_hand) < 17:
+    elif calculate_score(dealer_hand) < 17:
         add_card_dealer_hand(dealer_hand)
-        print("Dealer takes another card.")
-        
-    display_hands(dealer_hand, player_hand)
-    
-    dealer_score = calculate_score(dealer_hand)
-    
-    if dealer_score > 21:
-        busted()
-        print("The dealer lost, player win!")
-    elif dealer_score == 21:
-        blackjack()
-    else:
-        print(f"The dealer's final score: {dealer_score}")
+
+    # if dealer_score > 21:
+    #     dealer_busted()
+    # elif dealer_score == 21:
+    #     dealer_blackjack()
+    # else:
+    #     return f"The dealer's final score: {dealer_score}"
+def tie():
+    return "It's a tie!"
+
+def player_wins():
+    return "Player wins!"
+
+def dealer_wins():
+    return "Dealer wins!"
 
 def who_wins(dealer_hand, player_hand):
     dealer_score = calculate_score(dealer_hand)
     player_score = calculate_score(player_hand)
-    if dealer_score > 21:
-        print("Dealer busts. You win!")
-    elif player_score > 21:
-        print("You bust. The house wins!")
+    if dealer_score == 21:
+        print(dealer_blackjack())
+    elif player_score == 21:
+        print(player_blackjack())
     elif dealer_score == player_score:
-        print("It's a tie! No winner!")
+        print(tie())
     elif dealer_score > player_score:
-        print("The house wins!")
-    else:
-        print("You win!")
+        print(dealer_wins())
+    elif player_score > dealer_score:
+        print(player_wins())
+
 
 def main():
-    print("Welcome to BlackJack Game!")
-    print("Would you like to play? [y/n]: ")
-    player_choice = " "
-    dealer_hand, player_hand = deal_cards()
+    greetings()
+    player_choice = play_game()
+    
     while player_choice != "n":
-        player_choice = input()
+        dealer_hand, player_hand = deal_cards()
+        display_hands(dealer_hand, player_hand)
+        
         if player_choice == 'y':
-            display_hands(dealer_hand, player_hand)
-            calculate_score(player_hand)
             while True:
-                print("Would you like another card? (y/n)")
-                choice = input()
-                if choice == 'y':
+                calculate_score(player_hand)
+                add_choice = deal_another_card()
+                
+                if add_choice == 'y':
                     add_card_player_hand(player_hand)
                     display_hands(dealer_hand, player_hand)
+                    
                     if calculate_score(player_hand) > 21:
+                        who_wins(dealer_hand, player_hand)
                         break
-                elif choice == 'n':
-                    current_score = calculate_score(player_hand)
-                    print(f"Current score is: {current_score}")
+                elif add_choice == 'n':
+                    calculate_score(player_hand)      
+                                       
+                    dealer_turn(dealer_hand, player_hand)  
+                    who_wins(dealer_hand, player_hand)
                     break     
-            
-            dealer_turn(dealer_hand, player_hand)
-            display_hands(dealer_hand, player_hand)
-            calculate_score(dealer_hand)  
-            who_wins(dealer_hand, player_hand)          
-            
+        player_choice = play_game()
+                    
                                 
-        else:
-            print("Thank you for playing! Goodbye!")
-            break
-
+    else:
+        print("Thank you for playing! Goodbye!")
+    
 
 if __name__ == "__main__":            
     main()
