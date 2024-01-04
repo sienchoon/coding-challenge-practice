@@ -159,7 +159,7 @@ def main():
                     time.sleep(0.5)
                     
                     if calculate_score(player_hand) == 21:
-                        player_blackjack()
+                        print(player_blackjack())
                         break
                     elif calculate_score(player_hand) > 21:
                         who_wins(dealer_hand, player_hand)
