@@ -5,7 +5,12 @@ def greetings():
     print("Welcome to BlackJack")
     
 def play_game():
-    return input("Would you like to play? [y/n]: ").lower()
+    while True:
+        choice = input("Would you like to play? (y/n): ").lower()
+        if choice in ['y', 'n']:
+            return choice
+        else:
+            return input("Invalid input. Please enter 'y' or 'n'.")
     
 def deck_list():
     cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
@@ -26,14 +31,19 @@ value = card_value(cards)
 # print(f'{cards} : {value}') 
 
 def deal_another_card():
-    return input("Would you like another card? (y/n): ").lower()
+    while True:
+        choice = input("Would you like another card? (y/n): ").lower()
+        if choice in ['y', 'n']:
+            return choice
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
 
 #---------------------------------------------------------------#
 def player_blackjack():
     return "Thats a Blackjack! Player wins!"
 
 def player_busted():
-    return "You bust The house wins!"
+    return "You bust! The house wins!"
 
 def dealer_blackjack():
     return "Thats a Blackjack! Dealer wins!"
@@ -50,11 +60,7 @@ def calculate_score(hand):
         
 def display_score(hand):
     print(f'Your score: {calculate_score(hand)}')      
-    # if player_score == 21:
-    #     player_blackjack()
-    # elif player_score > 21:
-    #     player_busted()
-    # return player_score
+
 #---------------------------------------------------------------#
 
 # function to deal cards to player and dealer
@@ -83,25 +89,15 @@ def add_card_dealer_hand(dealer_hand):
 def dealer_turn(dealer_hand):
     print("It is dealer's turn to draw a card")
     time.sleep(0.5)
-    # player_score = calculate_score(player_hand)
-    
-    # if player hand bust
-    # if player_score > 21:
-    #     player_busted()
+
     while True:    
         if calculate_score(dealer_hand) < 17:
             add_card_dealer_hand(dealer_hand)
-            time.sleep(0.5)
             display_dealer_hands(dealer_hand)
+            time.sleep(1)
         else:
             break
 
-    # if dealer_score > 21:
-    #     dealer_busted()
-    # elif dealer_score == 21:
-    #     dealer_blackjack()
-    # else:
-    #     return f"The dealer's final score: {dealer_score}"
 def tie():
     return "It's a tie!"
 
@@ -141,14 +137,17 @@ def main():
     time.sleep(1)
     player_choice = play_game()
     
-    while player_choice != "n":
+    while player_choice == "y":
         dealer_hand, player_hand = deal_cards(dealer_hand=[], player_hand=[])
         display_dealer_hands(dealer_hand)
         display_player_hands(player_hand)
         display_score(player_hand)
-        time.sleep(0.5)
+        time.sleep(0.5)        
+        if calculate_score(player_hand) == 21:
+            player_blackjack()
+            break
         
-        if player_choice == 'y':
+        elif player_choice == 'y':
             while True:
                 add_choice = deal_another_card()
                 
@@ -181,6 +180,7 @@ def main():
                     who_wins(dealer_hand, player_hand)
                     # calculate_score(player_hand)
                     break     
+        
                 time.sleep(0.5)
         player_choice = play_game()
                     
