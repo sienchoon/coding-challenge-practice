@@ -126,7 +126,7 @@ def who_wins(dealer_hand, player_hand):
     elif dealer_score > player_score and dealer_score < 22:
         print(dealer_wins())
     elif player_score > dealer_score and player_score < 22:
-        print(player_wins())
+        print(f"{player_wins()} That's 5 cards under!")
 
 def five_below_21(player_hand):
     if calculate_score(player_hand) < 21 and len(player_hand) == 5:
@@ -136,6 +136,7 @@ def main():
     greetings()
     time.sleep(1)
     player_choice = play_game()
+    player_blackjack_flag = False 
     
     while player_choice == "y":
         dealer_hand, player_hand = deal_cards(dealer_hand=[], player_hand=[])
@@ -143,12 +144,15 @@ def main():
         display_player_hands(player_hand)
         display_score(player_hand)
         time.sleep(0.5)        
-        if calculate_score(player_hand) == 21:
-            player_blackjack()
-            break
         
+        if calculate_score(player_hand) == 21:
+            print(player_blackjack())
+            player_blackjack_flag = True
+            
         elif player_choice == 'y':
             while True:
+                if player_blackjack_flag:
+                    break
                 add_choice = deal_another_card()
                 
                 if add_choice == 'y':
