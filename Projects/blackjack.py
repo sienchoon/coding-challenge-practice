@@ -126,19 +126,19 @@ def who_wins(dealer_hand, player_hand):
     elif dealer_score > player_score and dealer_score < 22:
         print(dealer_wins())
     elif player_score > dealer_score and player_score < 22:
-        print(f"{player_wins()} That's 5 cards under!")
+        print(player_wins())
 
 def five_below_21(player_hand):
-    if calculate_score(player_hand) < 21 and len(player_hand) == 5:
-        return player_wins()
+    if calculate_score(player_hand) <= 21 and len(player_hand) == 5:
+        print(f"{player_wins()} That's 5 cards under!")
 
 def main():
     greetings()
     time.sleep(1)
     player_choice = play_game()
-    player_blackjack_flag = False 
     
     while player_choice == "y":
+        player_blackjack_flag = False 
         dealer_hand, player_hand = deal_cards(dealer_hand=[], player_hand=[])
         display_dealer_hands(dealer_hand)
         display_player_hands(player_hand)
@@ -148,14 +148,16 @@ def main():
         if calculate_score(player_hand) == 21:
             print(player_blackjack())
             player_blackjack_flag = True
-            
+                       
+        if player_blackjack_flag:
+            player_choice = play_game()
+
         elif player_choice == 'y':
             while True:
-                if player_blackjack_flag:
-                    break
                 add_choice = deal_another_card()
                 
                 if add_choice == 'y':
+                    player_below_5 = False
                     add_card_player_hand(player_hand)
                     display_dealer_hands(dealer_hand)
                     display_player_hands(player_hand)
@@ -170,7 +172,9 @@ def main():
                         break
                     elif five_below_21(player_hand):
                         who_wins(dealer_hand, player_hand)
+                        player_below_5 = True
                         break
+
                     # calculate_score(player_hand)
                 elif add_choice == 'n':
                     print(f'Player current score: {calculate_score(player_hand)}')
@@ -186,9 +190,8 @@ def main():
                     break     
         
                 time.sleep(0.5)
-        player_choice = play_game()
-                    
-                                
+            
+        player_choice = play_game()                   
     else:
         print("Thank you for playing! Goodbye!")
     
